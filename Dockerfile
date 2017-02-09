@@ -8,4 +8,4 @@ RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install zip && \
     docker-php-ext-install mysqli
 
-RUN apk del .build-dependencies
+
