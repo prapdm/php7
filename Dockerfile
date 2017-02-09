@@ -1,9 +1,40 @@
-FROM php:7.1-alpine
+FROM alpine:3.5
 
-RUN apk --no-cache update \
-    && apk --no-cache upgrade \
-    &&  docker-php-ext-install pdo_mysql 
+MAINTAINER avenus.pl
 
+RUN apk  --update add --no-cache \
+        php7 \
+        php7-dom \
+        php7-ctype \
+        php7-curl \
+        php7-fpm \
+        php7-gd \
+        php7-intl \
+        php7-json \
+        php7-mbstring \
+        php7-mcrypt \
+        php7-mysqlnd \
+        php7-opcache \
+        php7-pdo \
+        php7-pdo_mysql \
+        php7-posix \
+        php7-session \
+        php7-xml \
+        php7-iconv \
+        php7-phar \
+        php7-openssl \
+    && rm -rf /var/cache/apk/* \
+    && addgroup -g 82 -S www-data \
+    && adduser -u 82 -D -S -G www-data www-data
+
+COPY php.ini /etc/php7/conf.d/50-setting.ini
+COPY php-fpm.conf /etc/php7/php-fpm.conf
+
+RUN ln -s /usr/bin/php7 /usr/bin/php
+
+EXPOSE 9000
+
+CMD ["php-fpm7", "-F"]
 
 
 
