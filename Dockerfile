@@ -1,7 +1,8 @@
 FROM php:7.0.16-fpm-alpine
-RUN apk add --no-cache libpng-dev libmcrypt-dev libxml2-dev freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev 
+RUN apk add --no-cache libpng-dev libmcrypt-dev libxml2-dev freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev icu-dev
 RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install opcache && \
+    docker-php-ext-install intl && \
     docker-php-ext-install calendar && \ 
     docker-php-ext-configure gd \
     --with-gd \
