@@ -1,1 +1,1 @@
-docker build --no-cache=true -t avenus/php7 .
+docker build -t avenus/php7 .
